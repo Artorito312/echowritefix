@@ -1,0 +1,104 @@
+/* === Google Fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #FFF8E1, #FFEBCC);
+    text-align: center;
+    color: #333;
+}
+
+/* === Smooth Navbar Shrink Effect === */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+header.shrink {
+    padding: 10px 0;
+    background-color: #FF7F50;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    transition: font-size 0.3s ease-in-out;
+}
+
+header.shrink h1 {
+    font-size: 1.8em;
+}
+
+/* === Content Styling === */
+.about-container {
+    max-width: 800px;
+    margin: 120px auto 50px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+h2 {
+    color: #E63946;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* === Back Button Styling === */
+button {
+    background: linear-gradient(to right, #E63946, #FF7F50);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(230, 57, 70, 0.4);
+    margin-top: 20px;
+}
+
+button:hover {
+    background: linear-gradient(to right, #FF7F50, #E63946);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(255, 87, 34, 0.5);
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .about-container {
+        margin: 140px auto 50px;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 1.1em;
+    }
+}

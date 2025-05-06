@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EchoWrite - Community</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <style>
+    body { background: #f0f2f5; }
+    .post-card { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .avatar { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; }
+    .post-header { display: flex; align-items: center; margin-bottom: 10px; }
+    .post-actions { margin-top: 10px; }
+    .comment { margin-top: 10px; padding-left: 20px; font-size: 14px; }
+    .comment img { width: 30px; height: 30px; border-radius: 50%; margin-right: 8px; }
+  </style>
+</head>
+
+<body>
+
+<header class="bg-light shadow-sm p-3 mb-4">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h2 class="text-danger">EchoWrite Community</h2>
+    <a href="index.html" class="btn btn-outline-primary">Back to Home</a>
+  </div>
+</header>
+
+<main class="container">
+  <section id="posts" class="mb-5">
+    <!-- Posts will load here dynamically -->
+  </section>
+</main>
+
+<footer class="bg-light py-4 mt-5">
+  <div class="container text-center">
+    <p>© 2025 EchoWrite. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const indianNames = [
+  "Aarav", "Isha", "Kabir", "Diya", "Raj", "Simran", "Anaya", "Aryan", "Priya", "Rahul"
+];
+
+const indianComments = [
+  "Bahut accha likha hai!",
+  "Really inspiring 🌟",
+  "I feel connected to this story.",
+  "Wah! Beautifully expressed.",
+  "Keep writing more yaar!",
+  "Full desi vibes 👏",
+  "Heart touching lines ❤️",
+  "This took me back to my childhood.",
+  "Classic Indian storytelling!",
+  "Such a poetic flow!"
+];
+
+const indianPostIdeas = [
+  "A journey through the lanes of Old Delhi 🕌",
+  "Monsoon memories from my village 🌧️",
+  "The aroma of mom's homemade biryani 🍛",
+  "Dreams woven under the Mumbai sky 🌃",
+  "A tribute to India's forgotten heroes 🇮🇳",
+  "How a simple chai changed my day ☕",
+  "Exploring the colors of Rajasthan 🎨",
+  "My first train journey across South India 🚂",
+  "Festivals that bring us together 🎉",
+  "Tales of courage from the Himalayas 🏔️"
+];
+
+function getRandomIndianName() {
+  return indianNames[Math.floor(Math.random() * indianNames.length)];
+}
+
+function getRandomComment() {
+  return indianComments[Math.floor(Math.random() * indianComments.length)];
+}
+
+function getRandomPostIdea() {
+  return indianPostIdeas[Math.floor(Math.random() * indianPostIdeas.length)];
+}
+
+async function loadCommunity() {
+  const postsRes = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=8');
+  const posts = await postsRes.json();
+
+  const postsContainer = document.getElementById('posts');
+
+  posts.forEach((post, index) => {
+    const name = getRandomIndianName();
+    const idea = getRandomPostIdea();
+    const postDiv = document.createElement('div');
+    postDiv.className = 'post-card';
+
+    postDiv.innerHTML = `
+      <div class="post-header">
+        <img src="https://i.pravatar.cc/150?u=${name}" alt="avatar" class="avatar">
+        <div>
+          <strong>${name}</strong><br>
+          <small class="text-muted">${new Date().toLocaleDateString()}</small>
+        </div>
+      </div>
+      <p>${idea}</p>
+      <img src="https://source.unsplash.com/800x400/?india,book,art&sig=${index}" alt="Post image" class="img-fluid rounded mb-2">
+      <div class="post-actions">
+        <button class="btn btn-sm btn-outline-primary me-2" onclick="likePost(this)">👍 Like</button>
+        <button class="btn btn-sm btn-outline-secondary" onclick="toggleComments(${index})">💬 Comments</button>
+      </div>
+      <div id="comments-${index}" class="mt-3" style="display: none;">
+        ${[...Array(3)].map(() => {
+          const commenter = getRandomIndianName();
+          return `<div class='comment d-flex align-items-start'>
+                    <img src='https://i.pravatar.cc/150?u=${commenter}' alt='avatar'>
+                    <div><strong>${commenter}</strong><br>${getRandomComment()}</div>
+                  </div>`;
+        }).join('')}
+      </div>
+    `;
+
+    postsContainer.appendChild(postDiv);
+  });
+}
+
+function toggleComments(postId) {
+  const commentBox = document.getElementById(`comments-${postId}`);
+  commentBox.style.display = commentBox.style.display === 'none' ? 'block' : 'none';
+}
+
+function likePost(button) {
+  button.innerText = '❤️ Liked';
+  button.disabled = true;
+}
+
+loadCommunity();
+</script>
+
+</body>
+</html>

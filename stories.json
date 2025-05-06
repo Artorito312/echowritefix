@@ -1,0 +1,17 @@
+[
+    {
+      "id": "sherlock-holmes",
+      "title": "Sherlock Holmes",
+      "author": "Sir Arthur Conan Doyle",
+      "image": "images/story1.jpg",
+      "content": "fullstories/sherlock-holmes.html"
+    },
+    {
+      "id": "invisible-man",
+      "title": "The Invisible Man",
+      "author": "Ralph Ellison",
+      "image": "images/story2.jpg",
+      "content": "fullstories/invisible-man.html"
+    }
+  ]
+  

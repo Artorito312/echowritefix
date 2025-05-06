@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Write - EchoWrite</title>
+  <link rel="stylesheet" href="styles2.css">
+  <link rel="stylesheet" href="footer.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-danger" href="index.html" style="font-size: 2rem;">EchoWrite</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="abtafterlogin.html">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mt-5 pt-5">
+    <h1 class="text-center mb-4">✍️ Create Your Story</h1>
+
+    <div class="mb-3">
+      <input type="text" id="storyTitle" class="form-control form-control-lg" placeholder="Enter Story Title">
+    </div>
+
+    <div class="mb-3">
+      <div id="editor" style="height: 400px; background: white;"></div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mb-5">
+      <button class="btn btn-success" onclick="saveDraft()">💾 Save Draft</button>
+      <button class="btn btn-primary" onclick="publishStory()">🚀 Publish</button>
+      <button class="btn btn-warning" onclick="editDraft()">✏️ Edit</button>
+    </div>
+
+    <div id="statusMessage" class="text-center mt-3"></div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: <a href="mailto:shambaditya@gmail.com">shambaditya@gmail.com</a></p>
+            <p>Phone: +91 824-074-9177</p>
+            <p>Address: 6, Chowbaga Anandapur, Heritage Institute of Technology, Kolkata</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Contact</h3>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+    
+    <p>© 2025 EchoWrite. All rights reserved.</p>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+
+  <script>
+    const quill = new Quill('#editor', {
+      theme: 'snow'
+    });
+
+    function saveDraft() {
+      const title = document.getElementById('storyTitle').value.trim();
+      const content = quill.root.innerHTML;
+      if (title && content !== "<p><br></p>") {
+        document.getElementById('statusMessage').innerHTML = '<div class="alert alert-success">Draft saved successfully!</div>';
+      } else {
+        document.getElementById('statusMessage').innerHTML = '<div class="alert alert-danger">Please fill out both Title and Story!</div>';
+      }
+    }
+
+    function publishStory() {
+      const title = document.getElementById('storyTitle').value.trim();
+      const content = quill.root.innerHTML;
+      if (title && content !== "<p><br></p>") {
+        document.getElementById('statusMessage').innerHTML = '<div class="alert alert-primary">Story published successfully! 🚀</div>';
+      } else {
+        document.getElementById('statusMessage').innerHTML = '<div class="alert alert-danger">Please complete your story before publishing!</div>';
+      }
+    }
+
+    function editDraft() {
+      document.getElementById('statusMessage').innerHTML = '<div class="alert alert-warning">Editing draft mode activated!</div>';
+    }
+  </script>
+</body>
+</html>
